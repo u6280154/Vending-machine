@@ -41,8 +41,31 @@ def add_machine():
 @app.route('/everyMachine/', methods=['GET'])
 def all_machine():
     machines = Machine.query.all()
-    machine_list = [{'id': i.id,'code': i.code,'address': i.address} for i in machines]
+    machine_list = [{'id': i.id,
+                     'code': i.code,
+                     'address': i.address} for i in machines]
     return jsonify(machine_list)
+
+@app.route('/addProduct/', methods=['POST'])
+def add_product():
+     if request.headers.get('Content-Type') == 'application/json':
+        new_product = Product(machine_id=request.json['machine_id'],
+                              name=request.json['name'],
+                              quantity=request.json['quantity'],
+                              price=request.json['price'])
+        db.session.add(new_product)
+        db.session.commit()
+        return request.json
+    
+@app.route('/everyProduct/', methods=['GET'])
+def all_product():
+    producters = Product.query.all()
+    product_list = [{'id': i.id,
+                     'machine_id': i.machine_id,
+                     'name': i.name,
+                     'quantity': i.quantity,
+                     'price': i.price} for i in producters]
+    return jsonify(product_list)
 
 if __name__ == '__main__':
     app.run(debug=True)
