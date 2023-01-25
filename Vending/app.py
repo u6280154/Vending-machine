@@ -46,6 +46,16 @@ def all_machine():
                      'address': i.address} for i in machines]
     return jsonify(machine_list)
 
+@app.route('/deleteMachine/', methods=['DELETE'])
+def delete_machine(id):
+      if request.headers.get('Content-Type') == 'application/json':
+          Product.query.filter_by(machine_id=request.json[id]).delete()
+          Machine.query.filter_by(code=request.json[id]).delete()
+          db.session.commit()
+          return request.json
+              
+
+
 @app.route('/addProduct/', methods=['POST'])
 def add_product():
      if request.headers.get('Content-Type') == 'application/json':
@@ -66,6 +76,14 @@ def all_product():
                      'quantity': i.quantity,
                      'price': i.price} for i in producters]
     return jsonify(product_list)
+
+@app.route('/deleteProduct/', methods=['DELETE'])
+def delete_machine(id):
+      if request.headers.get('Content-Type') == 'application/json':
+          Product.query.filter_by(machine_id=request.json[id]).delete()
+          db.session.commit()
+          return request.json
+              
 
 if __name__ == '__main__':
     app.run(debug=True)
