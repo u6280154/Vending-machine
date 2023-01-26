@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 app = Flask(__name__)
 
 # Database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test.sqlite'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test1.sqlite'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -19,11 +19,11 @@ class Product(db.Model):
     __tablename__ = 'Product'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     machine_id = db.Column(db.String(100),db.ForeignKey('Machine.code'))
-    product_id = db.Column(db.String(100))
+    product_id = db.Column(db.String(100), unique=True)
     name = db.Column(db.String(100), unique=True)
     quantity = db.Column(db.Integer, unique=True)
     price = db.Column(db.Float, unique=True)
-
+    
 with app.app_context():
     db.create_all()
     
@@ -50,29 +50,29 @@ def all_machine():
 @app.route('/deleteMachine/', methods=['DELETE'])
 def delete_machine():
       if request.headers.get('Content-Type') == 'application/json':
-          Product.query.filter_by(machine_id=request.json['code']).delete()
-          Machine.query.filter_by(code=request.json['code']).delete()
+          Product.query.filter_by(machine_id=request.json['machine_id']).delete()
+          Machine.query.filter_by(code=request.json['machine_id']).delete()
           db.session.commit()
           return request.json
               
-
-
 @app.route('/addProduct/', methods=['POST'])
 def add_product():
-     if request.headers.get('Content-Type') == 'application/json':
-        new_product = Product(machine_id=request.json['machine_id'],
-                              name=request.json['name'],
-                              quantity=request.json['quantity'],
-                              price=request.json['price'])
-        db.session.add(new_product)
-        db.session.commit()
-        return request.json
+        if request.headers.get('Content-Type') == 'application/json':
+            new_product = Product(machine_id=request.json['machine_id'],
+                                  product_id=request.json['product_id'],
+                                  name=request.json['name'],
+                                  quantity=request.json['quantity'],
+                                  price=request.json['price'])
+            db.session.add(new_product)
+            db.session.commit()
+            return request.json
     
 @app.route('/everyProduct/', methods=['GET'])
 def all_product():
     producters = Product.query.all()
     product_list = [{'id': i.id,
                      'machine_id': i.machine_id,
+                     'product_id': i.product_id,
                      'name': i.name,
                      'quantity': i.quantity,
                      'price': i.price} for i in producters]
@@ -81,9 +81,36 @@ def all_product():
 @app.route('/deleteProduct/', methods=['DELETE'])
 def delete_product():
       if request.headers.get('Content-Type') == 'application/json':
-          Product.query.filter_by(product_id=request.json['id']).delete()
+          Product.query.filter_by(product_id=request.json['product_id']).delete()
           db.session.commit()
           return request.json
 
+@app.route('/deleteAllProduct/', methods=['DELETE'])
+def delete_all_product():
+      if request.headers.get('Content-Type') == 'application/json':
+          Product.query.filter_by(machine_id=request.json['machine_id']).delete()
+          db.session.commit()
+          return request.json
+
+@app.route('/editMachine/', methods=['PUT'])
+def modify_machine():
+     if request.headers.get('Content-Type') == 'application/json':
+         target_machine = Machine.query.get(request.json['machine_id'])
+         new_address = request.json['address']
+         target_machine.address = new_address
+         db.session.commit()
+         return request.json
+     
+
+@app.route('/editProduct/', methods=['PUT'])
+def modify_product():
+     if request.headers.get('Content-Type') == 'application/json':
+         target_product = Machine.query.filter_by(product_id=request.json['product_id']).first()
+         target_product.name = request.json['name']
+         target_product.quantity = request.json['quantity']
+         target_product.price = request.json['price']
+         db.session.commit()
+         return request.json
+        
 if __name__ == '__main__':
     app.run(debug=True)
