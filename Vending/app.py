@@ -33,11 +33,10 @@ def hello_world():
 
 @app.route('/addMachine/', methods=['POST'])
 def add_machine():
-    if request.headers.get('Content-Type') == 'application/json':
-        new_machine = Machine(code=request.json['code'],address=request.json['address'])
-        db.session.add(new_machine)
-        db.session.commit()
-        return request.json
+    new_machine = Machine(code=request.json['code'],address=request.json['address'])
+    db.session.add(new_machine)
+    db.session.commit()
+    return request.json
 
 @app.route('/everyMachine/', methods=['GET'])
 def all_machine():
@@ -49,23 +48,21 @@ def all_machine():
 
 @app.route('/deleteMachine/', methods=['DELETE'])
 def delete_machine():
-      if request.headers.get('Content-Type') == 'application/json':
-          Product.query.filter_by(machine_id=request.json['machine_id']).delete()
-          Machine.query.filter_by(code=request.json['machine_id']).delete()
-          db.session.commit()
-          return request.json
+    Product.query.filter_by(machine_id=request.json['machine_id']).delete()
+    Machine.query.filter_by(code=request.json['machine_id']).delete()
+    db.session.commit()
+    return request.json
               
 @app.route('/addProduct/', methods=['POST'])
 def add_product():
-        if request.headers.get('Content-Type') == 'application/json':
-            new_product = Product(machine_id=request.json['machine_id'],
-                                  product_id=request.json['product_id'],
-                                  name=request.json['name'],
-                                  quantity=request.json['quantity'],
-                                  price=request.json['price'])
-            db.session.add(new_product)
-            db.session.commit()
-            return request.json
+    new_product = Product(machine_id=request.json['machine_id'],
+                          product_id=request.json['product_id'],
+                          name=request.json['name'],
+                          quantity=request.json['quantity'],
+                          price=request.json['price'])
+    db.session.add(new_product)
+    db.session.commit()
+    return request.json
     
 @app.route('/everyProduct/', methods=['GET'])
 def all_product():
@@ -80,37 +77,60 @@ def all_product():
 
 @app.route('/deleteProduct/', methods=['DELETE'])
 def delete_product():
-      if request.headers.get('Content-Type') == 'application/json':
-          Product.query.filter_by(product_id=request.json['product_id']).delete()
-          db.session.commit()
-          return request.json
+    Product.query.filter_by(product_id=request.json['product_id']).delete()
+    db.session.commit()
+    return request.json
 
 @app.route('/deleteAllProduct/', methods=['DELETE'])
 def delete_all_product():
-      if request.headers.get('Content-Type') == 'application/json':
-          Product.query.filter_by(machine_id=request.json['machine_id']).delete()
-          db.session.commit()
-          return request.json
+    Product.query.filter_by(machine_id=request.json['machine_id']).delete()
+    db.session.commit()
+    return request.json
 
 @app.route('/editMachine/', methods=['PUT'])
 def modify_machine():
-     if request.headers.get('Content-Type') == 'application/json':
-         target_machine = Machine.query.get(request.json['machine_id'])
-         new_address = request.json['address']
-         target_machine.address = new_address
-         db.session.commit()
-         return request.json
+    target_machine = Machine.query.filter_by(code=request.json['machine_id']).first()
+    target_machine.address =  request.json['address']
+    db.session.commit()
+    return request.json
      
 
 @app.route('/editProduct/', methods=['PUT'])
 def modify_product():
-     if request.headers.get('Content-Type') == 'application/json':
-         target_product = Machine.query.filter_by(product_id=request.json['product_id']).first()
-         target_product.name = request.json['name']
-         target_product.quantity = request.json['quantity']
-         target_product.price = request.json['price']
-         db.session.commit()
-         return request.json
-        
+    target_product = Product.query.filter_by(product_id=request.json['product_id']).first()
+    target_product.name = request.json['name']
+    target_product.quantity = request.json['quantity']
+    target_product.price = request.json['price']
+    db.session.commit()
+    return request.json
+
+@app.route('/stockIncrement/', methods=['PUT'])
+def increment():
+    target_product = Product.query.filter_by(product_id=request.json['product_id']).first()
+    target_product.quantity += 1
+    db.session.commit()
+    return request.json
+
+@app.route('/stockDecrement/', methods=['PUT'])
+def decrement():
+    target_product = Product.query.filter_by(product_id=request.json['product_id']).first()
+    target_product.quantity -= 1
+    db.session.commit()
+    return request.json
+
+@app.route('/stockIncrement_By/', methods=['PUT'])
+def increment_by():
+    target_product = Product.query.filter_by(product_id=request.json['product_id']).first()
+    target_product.quantity += request.json['value']
+    db.session.commit()
+    return request.json
+
+@app.route('/stockDecrement_By/', methods=['PUT'])
+def decrement_by():
+    target_product = Product.query.filter_by(product_id=request.json['product_id']).first()
+    target_product.quantity -= request.json['value']
+    db.session.commit()
+    return request.json
+     
 if __name__ == '__main__':
     app.run(debug=True)
