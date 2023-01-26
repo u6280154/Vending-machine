@@ -18,10 +18,11 @@ class Machine(db.Model):
 class Product(db.Model):
     __tablename__ = 'Product'
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    machine_id = db.Column(db.String(100))
+    machine_id = db.Column(db.String(100),db.ForeignKey('Machine.code'))
+    product_id = db.Column(db.String(100))
     name = db.Column(db.String(100), unique=True)
-    quantity = db.Column(db.Integer)
-    price = db.Column(db.Float)
+    quantity = db.Column(db.Integer, unique=True)
+    price = db.Column(db.Float, unique=True)
 
 with app.app_context():
     db.create_all()
@@ -47,10 +48,10 @@ def all_machine():
     return jsonify(machine_list)
 
 @app.route('/deleteMachine/', methods=['DELETE'])
-def delete_machine(id):
+def delete_machine():
       if request.headers.get('Content-Type') == 'application/json':
-          Product.query.filter_by(machine_id=request.json[id]).delete()
-          Machine.query.filter_by(code=request.json[id]).delete()
+          Product.query.filter_by(machine_id=request.json['code']).delete()
+          Machine.query.filter_by(code=request.json['code']).delete()
           db.session.commit()
           return request.json
               
@@ -78,12 +79,11 @@ def all_product():
     return jsonify(product_list)
 
 @app.route('/deleteProduct/', methods=['DELETE'])
-def delete_machine(id):
+def delete_product():
       if request.headers.get('Content-Type') == 'application/json':
-          Product.query.filter_by(machine_id=request.json[id]).delete()
+          Product.query.filter_by(product_id=request.json['id']).delete()
           db.session.commit()
           return request.json
-              
 
 if __name__ == '__main__':
     app.run(debug=True)
