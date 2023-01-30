@@ -6,6 +6,12 @@ class Manager:
     def __init__(self):
         self.db = db
         
+    def find_machine(self,code=None):
+        machine={}
+        if code:
+            machine = Machine.query.filter_by(code=code).first()
+        return machine
+        
     def add_machine(self,code,address):
         new_machine = Machine(code=code,address=address)
         self.db.session.add(new_machine)
@@ -18,11 +24,13 @@ class Manager:
         self.db.session.commit()
         self.db.session.close()
         
-    def edit_machine(self,machine_id,address):
-        target_machine = Machine.query.filter_by(code=machine_id).first()
-        target_machine.address = address
-        self.db.session.commit()
-        self.db.session.close()
+    def edit_machine(self,machine_id,address=None):
+        if address:
+            target_machine = Machine.query.filter_by(code=machine_id).first()
+            target_machine.address = address
+            self.db.session.commit()
+            self.db.session.close()
+            
         
     def add_product(self,machine_id,product_id,name,quantity,price):
         new_product = Product(machine_id=machine_id,
