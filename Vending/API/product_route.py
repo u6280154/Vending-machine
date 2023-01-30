@@ -30,15 +30,23 @@ def all_product():
 def delete_product():
     product_id =  request.json['product_id']
     manager = Manager()
-    manager.delete_product(product_id)
-    return request.json
+    product = manager.find_product(product_id=product_id)
+    if product:
+        manager.delete_product(product_id)
+        return request.json
+    else:
+        return jsonify(message="Unidentify Stock Identity",status=404)
 
 @product_controller.route('/editProduct/', methods=['PUT'])
 def edit_product():
     product_id =  request.json['product_id']
-    name =  request.json['name']
-    quantity =  request.json['quantity']
-    price =  request.json['price']
     manager = Manager()
-    manager.edit_product(product_id,name,quantity,price)
-    return request.json
+    product = manager.find_product(product_id=product_id)
+    if product:
+        name =  request.json['name']
+        quantity =  request.json['quantity']
+        price =  request.json['price']
+        manager.edit_product(product_id,name,quantity,price)
+        return request.json
+    else:
+        return jsonify(message="Unidentify Stock Identity",status=404)

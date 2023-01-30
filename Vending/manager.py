@@ -11,6 +11,12 @@ class Manager:
         if code:
             machine = Machine.query.filter_by(code=code).first()
         return machine
+    
+    def find_product(self,product_id=None):
+        product={}
+        if product_id:
+            product = Product.query.filter_by(product_id=product_id).first()
+        return product
         
     def add_machine(self,code,address):
         new_machine = Machine(code=code,address=address)
@@ -28,8 +34,8 @@ class Manager:
         if address:
             target_machine = Machine.query.filter_by(code=machine_id).first()
             target_machine.address = address
-            self.db.session.commit()
-            self.db.session.close()
+        self.db.session.commit()
+        self.db.session.close()
             
         
     def add_product(self,machine_id,product_id,name,quantity,price):
@@ -47,12 +53,16 @@ class Manager:
         self.db.session.commit()
         self.db.session.close()
         
-    def edit_product(self,product_id,name,quantity,price):
+    def edit_product(self,product_id,name=None,quantity=None,price=None):
         target_product = Product.query.filter_by(product_id=product_id).first()
-        target_product.name = name
-        target_product.quantity = quantity
-        target_product.price = price
+        if name:
+            target_product.name = name
+        if quantity:
+            target_product.quantity = quantity
+        if price:
+            target_product.price = price
         db.session.commit()
+        self.db.session.close()
         
         
         
