@@ -1,5 +1,5 @@
 from typing import ByteString
-from app_legacy import app
+from Legacy.app_legacy import app
 from flask import json
 
 
