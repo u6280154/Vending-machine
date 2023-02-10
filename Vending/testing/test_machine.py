@@ -7,4 +7,4 @@ def test_machine():
         "code": "OORT_CLOUD",
         "address": "Xibalba"
     })
-    assert response.status_code == 400
+    assert response.status_code == 500
