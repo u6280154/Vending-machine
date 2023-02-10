@@ -1,21 +1,24 @@
 from flask import Flask
+from db import db
 from api.machine_route import machine_controller
 from api.product_route import product_controller
-from db import db
 
 
 def create_app():
-    app = Flask(__name__)
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test1.sqlite'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-    db.init_app(app)
-    with app.app_context():
-        db.create_all()
-    app.register_blueprint(machine_controller)
-    app.register_blueprint(product_controller) 
-    return app
+    application: Flask = Flask(__name__)
 
-if __name__ == '__main__': 
+    application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test5.sqlite'
+    application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+    db.init_app(application)
+    with application.app_context():
+        db.create_all()
+
+    application.register_blueprint(machine_controller)
+    application.register_blueprint(product_controller)
+    return application
+
+
+if __name__ == '__main__':
     app = create_app()
-    app.run(debug=True) 
-    
+    app.run(debug=True)
