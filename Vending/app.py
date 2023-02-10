@@ -1,7 +1,7 @@
-from flask import Flask
-from db import db
 from api.machine_route import machine_controller
 from api.product_route import product_controller
+from db import db
+from flask import Flask
 
 
 def create_app():
