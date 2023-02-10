@@ -1,5 +1,5 @@
-from flask import Blueprint, request, jsonify
 from database.machine import Machine
+from flask import Blueprint, request, jsonify
 from manager import Manager
 
 
