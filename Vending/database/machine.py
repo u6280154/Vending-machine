@@ -1,4 +1,4 @@
-from db import db
+from Vending.db import db
 
 
 class Machine(db.Model):

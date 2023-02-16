@@ -1,6 +1,6 @@
-from api.machine_route import machine_controller
-from api.product_route import product_controller
-from db import db
+from Vending.api.machine_route import machine_controller
+from Vending.api.product_route import product_controller
+from Vending.db import db
 from flask import Flask
 
 

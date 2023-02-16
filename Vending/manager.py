@@ -1,6 +1,6 @@
-from database.machine import Machine
-from database.product import Product
-from db import db
+from Vending.database.machine import Machine
+from Vending.database.product import Product
+from Vending.db import db
 
 
 class Manager:
