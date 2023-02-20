@@ -2759,8 +2759,6 @@ l
 <Vending/venv/Lib/site-packages/_pytest/assertion/__init__.py,8\4\842531448a9fb39fef0a017dba9679b0ee444ce5
 L
 Vending/Legacy/app_legacy.py,7\3\73bf757c38f5e168fe69cc76724d79adbc7bc525
-K
-Vending/testing/__init__.py,3\c\3c5679816e1fcb4c8d92469672bf89c42f3f094a
 7
 tox.ini,6\1\61be067c7cf3bdbf8a6b021a2b5167eb30612d0c
 J

@@ -7,7 +7,7 @@ from Vending.db import db
 def create_app():
     application: Flask = Flask(__name__)
 
-    application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test5.sqlite'
+    application.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///test6.sqlite'
     application.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
     db.init_app(application)
