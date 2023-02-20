@@ -28,8 +28,9 @@ def all_product():
             "product_id": i.product_id,
             "name": i.name,
             "quantity": i.quantity,
-            "price": i.price
-        } for i in producters
+            "price": i.price,
+        }
+        for i in producters
     ]
     return jsonify(product_list)
 
