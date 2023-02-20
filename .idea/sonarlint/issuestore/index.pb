@@ -41,5 +41,3 @@ L
 Vending/api/machine_route.py,9\5\95e20a9330824229c85f29625969ff72ca909436
 L
 Vending/api/product_route.py,4\d\4d26bf63b3d1752c9b06b3ee29c09033bb3bb8ce
-@
-requirements.txt,1\9\19359a61ae2446b51b549167b014da2fcf265768
