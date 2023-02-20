@@ -2767,3 +2767,15 @@ J
 .github/workflows/main.yml,c\7\c778226b6c4c0fb51cf7942c8ee1f3d9fc1249d0
 ;
 poetry.lock,0\0\0068a1506b061a8948c37d78b0dd5697211558d3
+G
+Vending/api/__init__.py,5\1\515b303db9fc442f7e60138fad62832bc8dbce88
+L
+Vending/database/__init__.py,e\6\e67304d60d3430eb0363131d158be1da8aba7249
+@
+requirements.txt,1\9\19359a61ae2446b51b549167b014da2fcf265768
+>
+pyproject.toml,5\d\5d07e7d72637aa0d59c89d381fe6dc4cf46e2491
+H
+sonar-project.properties,2\5\2538046035efb77ecc44e1fd2eec1e2641594d4c
+K
+Vending/database/machine.py,2\2\22d83661e57f2d52f265036f170d7973945c7b4c

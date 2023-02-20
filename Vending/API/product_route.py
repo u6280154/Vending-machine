@@ -1,5 +1,5 @@
-from Vending.database.product import Product
 from flask import Blueprint, request, jsonify
+from Vending.database.product import Product
 from Vending.manager import Manager
 
 product_controller = Blueprint("product_controller", __name__)

@@ -1,5 +1,5 @@
-from Vending.database.machine import Machine
 from flask import Blueprint, request, jsonify
+from Vending.database.machine import Machine
 from Vending.manager import Manager
 
 
