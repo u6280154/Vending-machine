@@ -1,7 +1,6 @@
-from flask import Blueprint, jsonify, request
+from flask import (Blueprint, jsonify, request)
 from Vending.database.machine import Machine
 from Vending.manager import Manager
-
 
 machine_controller = Blueprint("machine_controller", __name__)
 
