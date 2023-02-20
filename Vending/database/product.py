@@ -2,9 +2,9 @@ from Vending.db import db
 
 
 class Product(db.Model):
-    __tablename__ = 'Product'
+    __tablename__ = "Product"
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    machine_id = db.Column(db.String(100), db.ForeignKey('Machine.code'))
+    machine_id = db.Column(db.String(100), db.ForeignKey("Machine.code"))
     product_id = db.Column(db.String(100), unique=True)
     name = db.Column(db.String(100), unique=True)
     quantity = db.Column(db.Integer, unique=True)

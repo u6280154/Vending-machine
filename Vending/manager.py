@@ -41,11 +41,12 @@ class Manager:
         self.db.session.close()
 
     def add_product(self, machine_id, product_id, name, quantity, price):
-        new_product = Product(machine_id=machine_id,
-                              product_id=product_id,
-                              name=name,
-                              quantity=quantity,
-                              price=price)
+        new_product = Product(
+            machine_id=machine_id,
+            product_id=product_id,
+            name=name,
+            quantity=quantity,
+            price=price)
         self.db.session.add(new_product)
         self.db.session.commit()
         self.db.session.close()

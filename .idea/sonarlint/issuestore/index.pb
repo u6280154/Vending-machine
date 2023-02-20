@@ -2773,5 +2773,3 @@ L
 pyproject.toml,5\d\5d07e7d72637aa0d59c89d381fe6dc4cf46e2491
 H
 sonar-project.properties,2\5\2538046035efb77ecc44e1fd2eec1e2641594d4c
-K
-Vending/database/machine.py,2\2\22d83661e57f2d52f265036f170d7973945c7b4c
