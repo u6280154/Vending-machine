@@ -6,7 +6,7 @@ from Vending.manager import Manager
 product_controller = Blueprint("product_controller", __name__)
 
 
-@product_controller.route('/addProduct/', methods=["POST"])
+@product_controller.route("/addProduct/", methods=["POST"])
 def add_machine():
     machine_id = request.json["machine_id"]
     product_id = request.json["product_id"]
@@ -18,7 +18,7 @@ def add_machine():
     return request.json
 
 
-@product_controller.route('/everyProduct/', methods=["GET"])
+@product_controller.route("/everyProduct/", methods=["GET"])
 def all_product():
     producters = Product.query.all()
     product_list = [
@@ -34,7 +34,7 @@ def all_product():
     return jsonify(product_list)
 
 
-@product_controller.route('/deleteProduct/', methods=["DELETE"])
+@product_controller.route("/deleteProduct/", methods=["DELETE"])
 def delete_product():
     product_id = request.json["product_id"]
     manager = Manager()
@@ -46,7 +46,7 @@ def delete_product():
         return jsonify(message="Unidentify Stock Identity", status=404)
 
 
-@product_controller.route('/editProduct/', methods=["PUT"])
+@product_controller.route("/editProduct/", methods=["PUT"])
 def edit_product():
     product_id = request.json["product_id"]
     manager = Manager()

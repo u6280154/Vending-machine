@@ -46,7 +46,8 @@ class Manager:
             product_id=product_id,
             name=name,
             quantity=quantity,
-            price=price)
+            price=price
+        )
         self.db.session.add(new_product)
         self.db.session.commit()
         self.db.session.close()
