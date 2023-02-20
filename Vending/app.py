@@ -1,4 +1,5 @@
 from flask import Flask
+
 from Vending.api.machine_route import machine_controller
 from Vending.api.product_route import product_controller
 from Vending.db import db

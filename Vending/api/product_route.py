@@ -1,4 +1,5 @@
 from flask import (Blueprint, jsonify, request)
+
 from Vending.database.product import Product
 from Vending.manager import Manager
 
