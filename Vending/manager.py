@@ -7,13 +7,15 @@ class Manager:
     def __init__(self):
         self.db = db
 
-    def find_machine(self, code=None):
+    @staticmethod
+    def find_machine(code=None):
         machine = {}
         if code:
             machine = Machine.query.filter_by(code=code).first()
         return machine
 
-    def find_product(self, product_id=None):
+    @staticmethod
+    def find_product(product_id=None):
         product = {}
         if product_id:
             product = Product.query.filter_by(product_id=product_id).first()
