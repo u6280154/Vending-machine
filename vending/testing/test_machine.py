@@ -1,8 +1,6 @@
 
 def test_get_all_machine(app):
-    response = app.test_client().get(
-        "/everyMachine/"
-    )
+    response = app.test_client().get("/everyMachine/")
     assert response.status_code == 200
 
 
