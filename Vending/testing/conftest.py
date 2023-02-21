@@ -1,4 +1,5 @@
 import pytest
+
 from vending.app import create_app
 
 
