@@ -1,11 +1,15 @@
+from flask.testing import FlaskClient
 
-def test_get_all_machine(app):
-    response = app.test_client().get("/everyMachine/")
+
+def test_get_all_machine(client: FlaskClient) -> None:
+    """High level support for doing this and that."""
+    response = client.get("/everyMachine/")
     assert response.status_code == 200
 
 
-def test_add_machine(app):
-    response = app.test_client().post(
-        "/addMachine/", json={"code": "MAC123", "address": "Lake13"}
+def test_add_machine(client: FlaskClient) -> None:
+    """High level support for doing this and that."""
+    response = client.post(
+        "/addMachine/", json={"code": "MAC1234", "address": "Lake134"}
     )
     assert response.status_code == 200

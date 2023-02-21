@@ -25,8 +25,6 @@ R
 "Vending/.pytest_cache/CACHEDIR.TAG,9\1\912708f08e1f79e7ed79743e8bbb1f700d103566
 O
 Vending/.pytest_cache/README.md,d\a\da75be90a72c996b3461e44674140a52cff1d58c
-7
-tox.ini,6\1\61be067c7cf3bdbf8a6b021a2b5167eb30612d0c
 L
 Vending/database/__init__.py,e\6\e67304d60d3430eb0363131d158be1da8aba7249
 C
@@ -41,3 +39,15 @@ L
 Vending/api/machine_route.py,9\5\95e20a9330824229c85f29625969ff72ca909436
 L
 Vending/api/product_route.py,4\d\4d26bf63b3d1752c9b06b3ee29c09033bb3bb8ce
+J
+.github/workflows/main.yml,c\7\c778226b6c4c0fb51cf7942c8ee1f3d9fc1249d0
+=
+vending/db.py,4\3\43dbc81603d84c4740cc96df8df1672142428c4d
+B
+vending/manager.py,f\d\fda4dd2d657a967a6a0b12105373880ee2ddc124
+D
+vending/coverage.xml,a\8\a83be3ea676c9ec0f991ffaca8532c2a904b66d8
+K
+vending/database/machine.py,1\c\1c905ceb6f6da41945c3e5cdd51c185763e3f334
+;
+poetry.lock,0\0\0068a1506b061a8948c37d78b0dd5697211558d3
