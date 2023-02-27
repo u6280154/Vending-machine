@@ -41,13 +41,3 @@ L
 Vending/api/product_route.py,4\d\4d26bf63b3d1752c9b06b3ee29c09033bb3bb8ce
 J
 .github/workflows/main.yml,c\7\c778226b6c4c0fb51cf7942c8ee1f3d9fc1249d0
-=
-vending/db.py,4\3\43dbc81603d84c4740cc96df8df1672142428c4d
-B
-vending/manager.py,f\d\fda4dd2d657a967a6a0b12105373880ee2ddc124
-D
-vending/coverage.xml,a\8\a83be3ea676c9ec0f991ffaca8532c2a904b66d8
-K
-vending/database/machine.py,1\c\1c905ceb6f6da41945c3e5cdd51c185763e3f334
-;
-poetry.lock,0\0\0068a1506b061a8948c37d78b0dd5697211558d3
