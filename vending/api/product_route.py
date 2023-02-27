@@ -7,7 +7,7 @@ product_controller = Blueprint("product_controller", __name__)
 
 
 @product_controller.route("/addProduct/", methods=["POST"])
-def add_product() -> jsonify():
+def add_product():
     """High level support for doing this and that."""
     machine_id = request.json["machine_id"]
     product_id = request.json["product_id"]
